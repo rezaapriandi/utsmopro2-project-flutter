@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// Pastikan import ini sesuai dengan lokasi file Anda
+
 import '../models/profile.dart';
 import '../widgets/info_card.dart';
 import '../widgets/hobby_item.dart';
@@ -66,17 +66,16 @@ class _ProfilePageState extends State<ProfilePage> {
     final Color scaffoldBgColor = Theme.of(context).scaffoldBackgroundColor;
 
     return Scaffold(
-      // Hapus Stack utama, langsung gunakan CustomScrollView
+      
       body: CustomScrollView(
         slivers: [
-          // --- BAGIAN 1: HEADER (Cover + Foto + Nama) ---
-          // Menggunakan SliverToBoxAdapter agar header ini menjadi bagian dari list yang bisa di-scroll
+          
           SliverToBoxAdapter(
             child: Stack(
-              clipBehavior: Clip.none, // Izinkan konten keluar batas jika perlu
+              clipBehavior: Clip.none, 
               alignment: Alignment.topCenter,
               children: [
-                // 1. Gambar Sampul (Background)
+                
                 Container(
                   height: _coverHeight,
                   width: double.infinity,
@@ -92,14 +91,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         errorBuilder: (context, error, stackTrace) =>
                             Container(color: Colors.grey.shade800),
                       ),
-                      // Overlay gelap agar teks di atasnya (jika ada) terbaca
+                      
                       Container(color: Colors.black.withOpacity(0.2)),
                     ],
                   ),
                 ),
 
-                // 2. Foto Profil & Nama
-                // Kita gunakan Padding top untuk menurunkannya sehingga "menumpuk" di batas gambar
+                
                 Padding(
                   padding: EdgeInsets.only(top: _coverHeight - _profileRadius),
                   child: Column(
@@ -110,7 +108,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           shape: BoxShape.circle,
                           border: Border.all(
                             color:
-                                scaffoldBgColor, // Warna border mengikuti tema
+                                scaffoldBgColor, 
                             width: 4.0,
                           ),
                           boxShadow: [
@@ -132,16 +130,13 @@ class _ProfilePageState extends State<ProfilePage> {
 
                       const SizedBox(height: 10),
 
-                      // Teks Nama
-                      // Karena posisi scroll sekarang linear, teks ini akan berada di bawah foto
-                      // Jika ingin teksnya terlihat "di atas" gambar background, layout ini sudah cukup dekat
-                      // atau bisa dimainkan margin negatifnya.
+                      
                       Text(
                         widget.profile.nama,
                         style: GoogleFonts.inter(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          // Gunakan warna dinamis agar terlihat di mode terang/gelap
+                          
                           color: isDarkMode ? Colors.white : Colors.black87,
                         ),
                       ),
@@ -152,7 +147,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
 
-          // --- BAGIAN 2: ISI KONTEN (Tombol, NIM, dll) ---
+          
           SliverList(
             delegate: SliverChildListDelegate(
               [
